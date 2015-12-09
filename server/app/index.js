@@ -4,7 +4,11 @@ var app = express();
 
 var PORT = 3000;
 
-app.use(express.static(path.join(__dirname, '../../browser')));
+var projectRoot = path.join(__dirname, '../../');
+
+app.use(express.static(path.join(projectRoot, 'browser')));
+app.use(express.static(path.join(projectRoot, 'node_models')));
+app.use(express.static(path.join(projectRoot, 'public')));
 
 app.use(require('./routes'));
 
