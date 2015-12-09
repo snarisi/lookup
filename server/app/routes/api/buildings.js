@@ -32,8 +32,10 @@ router.post('/', function (req, res, next) {
 			newStyle = style;
 			newArch = arch;
 		
+			console.log(newArch);
+		
 			building.style = newStyle._id;
-			building.architect = newStyle._id;
+			building.architect = newArch._id;
 			
 			return Building.create(building);
 		})
@@ -41,6 +43,8 @@ router.post('/', function (req, res, next) {
 			newStyle.buildings.push(newBuilding._id);
 			newArch.buildings.push(newBuilding._id);
 			
+			console.log(newArch);
+		
 			var updateStyle = (newStyle.save());
 			var updateArch = (newArch.save());
 			
