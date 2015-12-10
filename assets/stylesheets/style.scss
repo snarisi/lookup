@@ -1,22 +1,44 @@
+$light-gray: #eee;
+
 * {
 	box-sizing: border-box;
+}
+
+html {
+	height: 100%
 }
 
 nav {
 	height: 50px;
 	background-color: black;
 	color: white;
+	padding: 10px 20px;
+	margin: 0 0 20px 0;
 	h3 {
 		float: left;
+		margin: 0;
 	}
 	a {
 		color: white;
+		text-decoration: none;
+		&:hover {
+			color: inherit;
+			text-decoration: inherit;
+			color: #bbb;
+		}
 	}
 	ul {
 		float: right;
 		li {
 			display: inline-block;
 			list-style: none;
+			margin: 0 0 0 10px;
 		}
 	}
+}
+
+.map, .side-view {
+	background-color: $light-gray;
+	height: 85vh;
+	border: solid 1px black;
 }

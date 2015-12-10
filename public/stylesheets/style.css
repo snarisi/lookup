@@ -1,16 +1,33 @@
 * {
   box-sizing: border-box; }
 
+html {
+  height: 100%; }
+
 nav {
   height: 50px;
   background-color: black;
-  color: white; }
+  color: white;
+  padding: 10px 20px;
+  margin: 0 0 20px 0; }
   nav h3 {
-    float: left; }
+    float: left;
+    margin: 0; }
   nav a {
-    color: white; }
+    color: white;
+    text-decoration: none; }
+    nav a:hover {
+      color: inherit;
+      text-decoration: inherit;
+      color: #bbb; }
   nav ul {
     float: right; }
     nav ul li {
       display: inline-block;
-      list-style: none; }
+      list-style: none;
+      margin: 0 0 0 10px; }
+
+.map, .side-view {
+  background-color: #eee;
+  height: 85vh;
+  border: solid 1px black; }

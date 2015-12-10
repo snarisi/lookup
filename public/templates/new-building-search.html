@@ -1,7 +1,11 @@
-<div>
-	building name:
+<div class="form-group">
+	<label for="building-name">Building: </label>
+	<input type="text" class="form-control" ng-model="newBuilding.name">
 </div>
 
-<div>
-	location:
+<div class="form-group">
+	<label for="location">Near: </label>
+	<input type="text" class="form-control" ng-model="newBuilding.location">
 </div>
+
+<a ui-sref="newBuilding.verify"><div class="btn btn-primary">Search</div></a>
