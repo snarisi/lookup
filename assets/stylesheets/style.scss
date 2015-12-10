@@ -1,0 +1,22 @@
+* {
+	box-sizing: border-box;
+}
+
+nav {
+	height: 50px;
+	background-color: black;
+	color: white;
+	h3 {
+		float: left;
+	}
+	a {
+		color: white;
+	}
+	ul {
+		float: right;
+		li {
+			display: inline-block;
+			list-style: none;
+		}
+	}
+}

@@ -1,7 +1,25 @@
 <!DOCTYPE html>
 <head>
+	<link rel="stylesheet" href="stylesheets/style.css">
 	<script src="angular/angular.js"></script>
 	<script src="angular-ui-router/build/angular-ui-router.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/buildings/buildings.state.js"></script>
+	<script src="js/buildings/buildings.controller.js"></script>
+	<script src="js/new-building/new-building.state.js"></script>
+	<script src="js/new-building/new-building.controller.js"></script>
 </head>
 
-<h1>Hello World</h1>
+<html>
+	<body ng-app="lookUp">
+		<nav>
+			<h3><a href="/">Look Up</a>     ------NAVBAR--------</h3>
+			<ul>
+				<li><a ui-sref="buildings">Search</a></li>
+				<li><a ui-sref="newBuilding">Add</a></li>
+			</ul>
+		</nav>
+		<ui-view></ui-view>
+		
+	</body>
+</html>
