@@ -1,7 +1,9 @@
 app.factory('Maps', function ($q) {
-	var map;
+	var mapDiv = document.querySelectorAll('map')[0];
+	console.log(mapDiv);
+	
 	var initalizeMap = function (mapDiv, center) {
-		map = new google.maps.Map(mapDiv, {
+		var map = new google.maps.Map(mapDiv, {
 			center: center,
 			scrollwheel: false,
 			zoom: 0
@@ -10,11 +12,11 @@ app.factory('Maps', function ($q) {
 	};
 
 	//TODO remove as it is unneeded?
-	var centerMap = function (center) {
+	var centerMap = function (center, map) {
 		map.setCenter(center);
 	};
 	
-	var drawMarker = function (position, title) {
+	var drawMarker = function (position, title, map) {
 		var marker = new google.maps.Marker({
 			position: position,
 			map: map,
@@ -24,6 +26,7 @@ app.factory('Maps', function ($q) {
 	}
 	
 	var findNewBuilding = function (queryName, queryLocation) {
+		var map = initalizeMap(mapDiv, { lat: 0, lng: 0 });
 		var service = new google.maps.places.PlacesService(map);
 		var query = { query: queryName + ' ' + queryLocation };
 		
@@ -56,8 +59,25 @@ app.factory('Maps', function ($q) {
 		return deffered.promise;
 	}
 	
+	var centerOnLocation = function (query) {
+		//TODO: refactor to combine with the function above
+		
+		var map = initalizeMap(mapDiv, { lat: 0, lng: 0 });
+		var service = new google.maps.places.PlacesService(map);
+//		query = { query: query};
+//		console.log(service);
+//		service.textSearch(query, function(results) {
+//			console.log('MAPS FACTORY')
+//			console.log(results);
+//			console.log(map);
+//			map.setCenter(results[0].geometry.location);
+//			map.setZoom(12);
+//		});
+	}
+	
 	return {
 		initializeMap: initalizeMap,
-		findNewBuilding: findNewBuilding
+		findNewBuilding: findNewBuilding,
+		centerOnLocation: centerOnLocation
 	}
 });

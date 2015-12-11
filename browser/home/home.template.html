@@ -1,0 +1,22 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8 text-center centered">
+			<button class="btn btn-primary">Use My Current Location</button>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-8 text-center centered">
+			<form name="buildingSearchForm">
+				<div class="form-group">
+					<label for="location"></label>
+					<input type="text" class="form-control" ng-model="searchLocation">
+				</div>
+				<a ui-sref="buildingsByLoc({ loc: searchLocation })">
+					<button class="btn btn-primary">Search</button>
+				</a>
+			</form>
+		</div>
+	</div>
+</div>
+{{searchLocation}}

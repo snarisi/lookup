@@ -1,6 +1,10 @@
 * {
   box-sizing: border-box; }
 
+.centered {
+  margin: auto;
+  float: none; }
+
 html {
   height: 100%; }
 
