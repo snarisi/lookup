@@ -21,37 +21,42 @@ router.get('/', function (req, res, next) {
 //route to add building to db
 router.post('/', function (req, res, next) {
 	var building = req.body;
+	console.log('REQ.BODY: ', building);
 	
 	var addStyle = Style.findOrCreate({ name: building.style });
 	var addArch = Architect.findOrCreate({ name: building.architect });
 	var newStyle;
 	var newArch;
-	var newBuiding;
+	var newBuilding;
 	
 	//TODO add this logic to the model?
 	Promise.all([addStyle, addArch])
 		.spread(function (style, arch) {
+			console.log('STYLE: ', style);
+			console.log('ARCH: ', arch)
 			newStyle = style;
 			newArch = arch;
 		
 			building.style = newStyle._id;
 			building.architect = newArch._id;
+			console.log('BUILDING: ', building);
 			
 			return Building.create(building);
 		})
-		.then(function (newBuilding) {
-			newBuilding = newBuilding;
+		.then(function (building) {
+			newBuilding = building;
 		
 			newStyle.buildings.push(newBuilding._id);
 			newArch.buildings.push(newBuilding._id);
 			
-			var updateStyle = (newStyle.save());
-			var updateArch = (newArch.save());
+			var updateStyle = newStyle.save();
+			var updateArch = newArch.save();
 			
 			return Promise.all([updateStyle, updateArch]);
 		})
 		.then(function () {
-			res.json(newBuiding);
+			console.log(newBuilding);
+			res.json(newBuilding);
 		})
 		.catch(console.error.bind(console));
 });

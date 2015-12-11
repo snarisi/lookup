@@ -1,11 +1,12 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-4 side-view">
-			<form name="newBuildingForm">
+			<form name="newBuildingForm" ng-submit="addNewBuilding(newBuilding)">
 				<ui-view></ui-view>
 			</form>
 		</div>
 		
 		<div map class="col-xs-8 map">map goes here</div>
 	</div>
+	{{newBuilding}}
 </div>
