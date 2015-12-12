@@ -1,15 +1,3 @@
-app.factory('Buildings', function ($http, $state) {
+app.factory('Buildings', function (BuildingUtils) {
 	
-	var addNewBuilding = function (building) {
-		return $http.post('/api/buildings', building)
-			.then(building => {
-			
-				//TODO redirect to building detail page
-				$state.go('allBuildings');
-			})
-	}
-	
-	return {
-		addNewBuilding: addNewBuilding
-	}
-})
+});

@@ -21,7 +21,6 @@ router.get('/', function (req, res, next) {
 //route to add building to db
 router.post('/', function (req, res, next) {
 	var building = req.body;
-	console.log('REQ.BODY: ', building);
 	
 	var addStyle = Style.findOrCreate({ name: building.style });
 	var addArch = Architect.findOrCreate({ name: building.architect });

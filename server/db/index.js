@@ -51,9 +51,7 @@ buildingSchema.statics.findByLocation = function (coords) {
 				$maxDistance: 32000
 	  		}
 		},
-	})
-	.then(buildings => buildings);
-
+	});
 }
 
 var Building = mongoose.model('Building', buildingSchema);

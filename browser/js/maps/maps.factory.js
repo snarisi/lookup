@@ -1,8 +1,8 @@
 app.factory('Maps', function ($q) {
-	var mapDiv = document.querySelectorAll('map')[0];
-	console.log(mapDiv);
-	
-	var initalizeMap = function (mapDiv, center) {
+	var initalizeMap = function (mapDiv, center, zoom) {
+		center = center || { lat: 0, lng: 0 };
+		zoom = zoom || 0;
+		
 		var map = new google.maps.Map(mapDiv, {
 			center: center,
 			scrollwheel: false,
@@ -59,25 +59,35 @@ app.factory('Maps', function ($q) {
 		return deffered.promise;
 	}
 	
-	var centerOnLocation = function (query) {
+	var findLocation = function (query, map) {
 		//TODO: refactor to combine with the function above
 		
-		var map = initalizeMap(mapDiv, { lat: 0, lng: 0 });
 		var service = new google.maps.places.PlacesService(map);
-//		query = { query: query};
-//		console.log(service);
-//		service.textSearch(query, function(results) {
-//			console.log('MAPS FACTORY')
-//			console.log(results);
-//			console.log(map);
-//			map.setCenter(results[0].geometry.location);
-//			map.setZoom(12);
-//		});
+		
+		var deffered = $q.defer();
+		
+		//search for place via google
+		//TODO: query 'The Cooper Union' returns results but 'Cooper Union' does not
+		service.textSearch({ query: query }, function(results) {
+			
+			if (!results.length) return deffered.reject(results);
+			
+			var location = [
+				results[0].geometry.location.lng(),
+				results[0].geometry.location.lat()
+			];
+			
+			deffered.resolve(location);
+				
+		});
+
+		//return promise
+		return deffered.promise;
 	}
 	
 	return {
 		initializeMap: initalizeMap,
 		findNewBuilding: findNewBuilding,
-		centerOnLocation: centerOnLocation
+		findLocation: findLocation
 	}
 });
