@@ -1,4 +1,8 @@
 app.controller('NewBuildingCtrl', function ($scope, Maps, BuildingUtils) {
+	
+	var mapDiv = document.getElementById('new-building-map');
+	var map = Maps.initializeMap(mapDiv);
+
 	$scope.newBuilding = {};
 	$scope.query = {
 		name: 'Empire State Building',
@@ -6,7 +10,7 @@ app.controller('NewBuildingCtrl', function ($scope, Maps, BuildingUtils) {
 	};
 	
 	$scope.findNewBuilding = function () {
-		Maps.findNewBuilding($scope.query.name, $scope.query.location, $scope.map)
+		Maps.findNewBuilding($scope.query.name, $scope.query.location, map)
 			.then(res => {
 				$scope.searchResults = {
 					name: res.name,

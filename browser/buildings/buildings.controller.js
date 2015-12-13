@@ -9,7 +9,6 @@ app.controller('BuildingsCtrl', function ($scope, $stateParams, Maps, BuildingUt
 			return BuildingUtils.findByLocation(locationArray.join(','));
 		})
 		.then(buildings => {
-			console.log(buildings);
 			$scope.buildings = buildings;
 			buildings.forEach(function (building) {
 				Maps.drawMarker(building, map);

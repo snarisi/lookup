@@ -38,8 +38,7 @@ app.factory('Maps', function ($q) {
 		return marker;
 	}
 	
-	var findNewBuilding = function (queryName, queryLocation) {
-		var map = initalizeMap(mapDiv, { lat: 0, lng: 0 });
+	var findNewBuilding = function (queryName, queryLocation, map) {
 		var service = new google.maps.places.PlacesService(map);
 		var query = { query: queryName + ' ' + queryLocation };
 		
@@ -53,7 +52,12 @@ app.factory('Maps', function ($q) {
 			if (!results.length) return deffered.reject(results);
 			
 			//draw marker and adjust map
-			var marker = drawMarker(results[0].geometry.location, results[0].name);
+			var marker = new google.maps.Marker({
+				position: results[0].geometry.location,
+				map: map,
+				title: results[0].name
+			});
+
 			map.setCenter(marker.position);
 			map.setZoom(12);
 			

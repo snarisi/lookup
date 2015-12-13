@@ -5,7 +5,7 @@ app.factory('BuildingUtils', function ($http, $state) {
 			.then(building => {
 			
 				//TODO redirect to building detail page
-				$state.go('allBuildings');
+				$state.go('home');
 			})
 	}
 	

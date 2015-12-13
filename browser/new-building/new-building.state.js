@@ -3,22 +3,22 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	
 	$stateProvider.state('newBuilding', {
 		url: '/new',
-		templateUrl: '/templates/new-building.html',
+		templateUrl: '/new-building/new-building.html',
 		controller: 'NewBuildingCtrl'
 	});
 	
 	$stateProvider.state('newBuilding.search', {
 		url: '/search',
-		templateUrl: '/templates/new-building-search.html'
+		templateUrl: '/new-building/new-building-search.html'
 	});
 	
 	$stateProvider.state('newBuilding.verify', {
 		url: '/verify',
-		templateUrl: '/templates/new-building-verify.html'
+		templateUrl: '/new-building/new-building-verify.html'
 	});	
 	
 	$stateProvider.state('newBuilding.info', {
 		url: '/info',
-		templateUrl: '/templates/new-building-info.html'
+		templateUrl: '/new-building/new-building-info.html'
 	});
 });
