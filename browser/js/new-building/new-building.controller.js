@@ -1,4 +1,4 @@
-app.controller('NewBuildingCtrl', function ($scope, Maps, Buildings) {
+app.controller('NewBuildingCtrl', function ($scope, Maps, BuildingUtils) {
 	$scope.newBuilding = {};
 	$scope.query = {
 		name: 'Empire State Building',
@@ -25,6 +25,6 @@ app.controller('NewBuildingCtrl', function ($scope, Maps, Buildings) {
 			})
 	}
 	
-	$scope.addNewBuilding = Buildings.addNewBuilding;
+	$scope.addNewBuilding = BuildingUtils.addNewBuilding;
 	
 });

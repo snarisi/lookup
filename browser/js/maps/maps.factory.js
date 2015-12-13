@@ -16,12 +16,25 @@ app.factory('Maps', function ($q) {
 		map.setCenter(center);
 	};
 	
-	var drawMarker = function (position, title, map) {
+	var drawMarker = function (building, map) {
 		var marker = new google.maps.Marker({
-			position: position,
+			position: { lat: building.location[1], lng: building.location[0]} ,
 			map: map,
-			title: title
+			title: building.name
 		});
+		
+		var infowindow = new google.maps.InfoWindow({
+          	content: '<p>' + building.name + '</p>' +
+					 '<p>' + building.architect.name + '</p>' +
+                  	 '<p>' + building.style.name + '</p>' +
+                  	 '<a href="/buildings/' + building._id + '">More</a> ' +
+                  	 '<a href="/buildings/' + building._id + '/edit">Edit</a>'
+        });
+
+        marker.addListener('click', function () {
+			infowindow.open(map, marker);
+        });
+
 		return marker;
 	}
 	
@@ -88,6 +101,7 @@ app.factory('Maps', function ($q) {
 	return {
 		initializeMap: initalizeMap,
 		findNewBuilding: findNewBuilding,
-		findLocation: findLocation
+		findLocation: findLocation,
+		drawMarker: drawMarker
 	}
 });

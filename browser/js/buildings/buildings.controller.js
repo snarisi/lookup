@@ -10,5 +10,9 @@ app.controller('BuildingsCtrl', function ($scope, $stateParams, Maps, BuildingUt
 		})
 		.then(buildings => {
 			console.log(buildings);
+			$scope.buildings = buildings;
+			buildings.forEach(function (building) {
+				Maps.drawMarker(building, map);
+			});
 		})
 });
