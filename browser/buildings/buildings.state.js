@@ -4,10 +4,10 @@ app.config(function ($stateProvider) {
 		templateUrl: '/templates/buildings.html',
 		controller: 'BuildingsCtrl'
 	});
-	
+
 	$stateProvider.state('buildingsByLoc', {
 		url: '/buildings/:loc',
-		templateUrl: '/templates/buildings.html',
+		templateUrl: '/buildings/buildings.html',
 		controller: 'BuildingsCtrl',
 	});
 });

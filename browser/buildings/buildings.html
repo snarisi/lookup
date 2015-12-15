@@ -2,14 +2,11 @@
 	<div class="row">
 		<!-- building list -->
 		<div class="col-xs-4 side-view">
-			List of buildings
-			<ul>
-				<li ng-repeat="building in buildings">{{building.name}}</li>
-			</ul>
+			<building-item ng-repeat="building in buildings" building="building"></building-item>
 		</div>
-		
+
 		<!-- google map view -->
 		<div class="col-xs-8 map" id="buildings-map"></div>
 	</div>
-	
+
 </div>
