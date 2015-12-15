@@ -1,0 +1,4 @@
+<ul>
+    <input ng-model="query" type="text" class="form-control"></input>
+    <li ng-repeat="option in options | filter:query ">{{option}}</li>
+</ul>
