@@ -44,10 +44,34 @@ nav {
 
 .map, .side-view {
 	background-color: $light-gray;
-	height: 85vh;
+	height: 86vh;
 	border: solid 1px black;
 }
 
 .side-view {
 	overflow: scroll;
+}
+
+.side-padding {
+	padding: 0 5%;
+}
+
+.no-gutter {
+	padding: 0;
+}
+
+.small-map, .building-photo {
+	height: 42vh;
+	width: 42vh;
+	float: left;
+	clear: both;
+	background-color: #00aa55;
+	border: solid 1px black;
+	margin: 0 10px 2vh 0;
+}
+
+.bottom-right {
+	position: relative;
+	bottom: 0;
+	right: 0;
 }

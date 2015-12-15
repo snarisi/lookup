@@ -6,7 +6,7 @@ app.config(function ($stateProvider) {
 	});
 
 	$stateProvider.state('buildingsByLoc', {
-		url: '/buildings/:loc',
+		url: '/buildings/location/:loc',
 		templateUrl: '/buildings/buildings.html',
 		controller: 'BuildingsCtrl',
 	});
