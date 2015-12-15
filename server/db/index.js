@@ -8,7 +8,9 @@ var buildingSchema = new mongoose.Schema({
 		name: { type: String, required: true },
 		architect: { type: mongoose.Schema.Types.ObjectId, ref: 'Architect' },
 		style: { type: mongoose.Schema.Types.ObjectId, ref: 'Style' },
-		location: { type: [Number], index: '2dsphere'  }
+		location: { type: [Number], index: '2dsphere'  },
+		description: { type: String },
+		image: { type: String }
 });
 
 var architectSchema = new mongoose.Schema({

@@ -2,7 +2,11 @@
 	<div class="row">
 		<!-- building list -->
 		<div class="col-xs-4 side-view">
-			<building-item ng-repeat="building in buildings" building="building"></building-item>
+			<div ng-repeat="building in buildings">
+				<building-item building="building"></building-item>
+				<a ui-sref="singleBuilding({ id: building._id })">More</a>
+				<a ui-sref="#">Edit</a>
+			</div>
 		</div>
 
 		<!-- google map view -->

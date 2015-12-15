@@ -1,21 +1,12 @@
 <div class="container-fuid side-padding">
-    <div class="row">
-        <!-- <div class="col-xs-12 no-gutter side-view"> -->
-<!--
-            <div class="col-xs-8 no-gutter">
-                building info
-            </div>
 
-            <div class="col-xs-4 no-gutter">
-                <div class="small-map">photo</div>
-                <div class="building-photo bottom-right">map</div>
-            </div> -->
+    <div class="row">
+
         <div class="side-view">
             <div class="small-map">map</div>
             <div class="building-photo">photo</div>
-            <div>
-                building info
-            </div>
+            <building-item building="building"></building-item>
+            <div>{{building.description}}</div>
         </div>
 
     </div>
