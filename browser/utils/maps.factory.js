@@ -43,6 +43,7 @@ app.factory('Maps', function ($q) {
 	}
 
 	var findNewBuilding = function (queryName, queryLocation, map) {
+
 		var service = new google.maps.places.PlacesService(map);
 		var query = { query: queryName + ' ' + queryLocation };
 
@@ -81,8 +82,8 @@ app.factory('Maps', function ($q) {
 	}
 
 	var findLocation = function (query, map) {
-		//TODO: refactor to combine with the function above
 
+		//TODO: refactor to combine with the function above
 		var service = new google.maps.places.PlacesService(map);
 
 		var deffered = $q.defer();

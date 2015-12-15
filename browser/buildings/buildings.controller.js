@@ -2,6 +2,9 @@ app.controller('BuildingsCtrl', function ($scope, $stateParams, Maps, BuildingUt
 	var mapDiv = document.getElementById('buildings-map');
 
 	$scope.map = Maps.initializeMap(mapDiv);
+	console.log($scope.searchLocation);
+
+	console.log($scope);
 
 	Maps.findLocation($stateParams.loc, $scope.map)
 		.then(locationArray => {
