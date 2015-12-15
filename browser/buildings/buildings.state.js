@@ -9,10 +9,5 @@ app.config(function ($stateProvider) {
 		url: '/buildings/location/:loc',
 		templateUrl: '/buildings/buildings.html',
 		controller: 'BuildingsCtrl',
-		// resolve: {
-		// 	searchLocation: function (Maps, $stateParams) {
-		// 		// return Maps.findLocation($stateParams.loc, document.createElement('div'));
-		// 	}
-		// }
 	});
 });
