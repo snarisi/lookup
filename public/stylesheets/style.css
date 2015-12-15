@@ -45,14 +45,15 @@ nav {
 .no-gutter {
   padding: 0; }
 
-.small-map, .building-photo {
+.small-map, .photo-container {
   height: 42vh;
   width: 42vh;
   float: left;
   clear: both;
-  background-color: #00aa55;
+  background-color: #eee;
   border: solid 1px black;
-  margin: 0 10px 2vh 0; }
+  margin: 0 10px 2vh 0;
+  overflow: hidden; }
 
 .bottom-right {
   position: relative;

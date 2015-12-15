@@ -4,7 +4,7 @@ app.directive('buildingItem', function () {
         templateUrl: 'buildings/item/building.item.html',
         constroller: 'BuildingsCtrl',
         scope: {
-            building: '='
+            building: '=',
         }
     }
 })
