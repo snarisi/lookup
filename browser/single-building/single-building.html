@@ -3,8 +3,11 @@
     <div class="row">
 
         <div class="side-view">
-            <div class="small-map">map</div>
+            <!-- <div class="small-map">map</div> -->
+            <lu-map buildings="[building]" class="small-map" id="single-building-map"></lu-map>
+
             <div class="photo-container"><img class="img-responsive" ng-src="{{building.image}}"></img></div>
+
             <building-item building="building"></building-item>
             <div>{{building.description}}</div>
         </div>

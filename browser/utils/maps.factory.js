@@ -108,6 +108,7 @@ app.factory('Maps', function ($q) {
 
 	return {
 		initializeMap: initalizeMap,
+		centerMap: centerMap,
 		findNewBuilding: findNewBuilding,
 		findLocation: findLocation,
 		drawMarker: drawMarker
