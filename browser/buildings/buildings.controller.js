@@ -3,6 +3,8 @@ app.controller('BuildingsCtrl', function ($scope, $stateParams, Maps, BuildingUt
 
 	$scope.map = Maps.initializeMap(mapDiv);
 	$scope.searchLoc = $stateParams.loc;
+	$scope.styles = [];
+	$scope.architects = [];
 
 	Maps.findLocation($stateParams.loc, $scope.map)
 		.then(locationArray => {
@@ -14,6 +16,10 @@ app.controller('BuildingsCtrl', function ($scope, $stateParams, Maps, BuildingUt
 			$scope.buildings = buildings;
 			buildings.forEach(function (building) {
 				Maps.drawMarker(building, $scope.map);
+
+				// TODO remove duplicates
+				$scope.styles.push(building.style);
+				$scope.architects.push(building.architect);
 			});
 		})
 });

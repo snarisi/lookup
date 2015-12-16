@@ -5,6 +5,9 @@
   margin: auto;
   float: none; }
 
+.hidden {
+  display: none; }
+
 html {
   height: 100%; }
 
