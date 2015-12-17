@@ -1,5 +1,5 @@
 app.controller('NewBuildingCtrl', function ($scope, Maps, BuildingUtils) {
-	
+
 	var mapDiv = document.getElementById('new-building-map');
 	var map = Maps.initializeMap(mapDiv);
 
@@ -8,17 +8,17 @@ app.controller('NewBuildingCtrl', function ($scope, Maps, BuildingUtils) {
 		name: 'Empire State Building',
 		location: 'New York'
 	};
-	
+
 	$scope.findNewBuilding = function () {
 		Maps.findNewBuilding($scope.query.name, $scope.query.location, map)
-			.then(res => {
+			.then(function (res) {
 				$scope.searchResults = {
 					name: res.name,
 					address: res.address
 				}
 				$scope.newBuilding.location = res.location;
 				$scope.newBuilding.address = res.address;
-			
+
 				//TODO consider basing the name on the returned results
 				$scope.newBuilding.name = $scope.query.name;
 			})
@@ -28,7 +28,7 @@ app.controller('NewBuildingCtrl', function ($scope, Maps, BuildingUtils) {
 				}
 			})
 	}
-	
+
 	$scope.addNewBuilding = BuildingUtils.addNewBuilding;
-	
+
 });

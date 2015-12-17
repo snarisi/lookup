@@ -2,7 +2,7 @@ app.factory('BuildingUtils', function ($http, $state) {
 
 	var addNewBuilding = function (building) {
 		return $http.post('/api/buildings', building)
-			.then(building => {
+			.then(function (building) {
 
 				//TODO redirect to building detail page
 				$state.go('home');
@@ -15,13 +15,17 @@ app.factory('BuildingUtils', function ($http, $state) {
 			method: 'GET',
 			params: { location: location }
 		})
-		.then(res => res.data)
+		.then(function (res) {
+			return res.data;
+		})
 		.then(null, console.error.bind(console));
 	}
 
 	var findById = function (id) {
 		return $http.get('/api/buildings/' + id)
-			.then(res => res.data)
+			.then(function (res) {
+				return res.data;
+			})
 			.then(null, console.error.bind(console));
 	}
 
