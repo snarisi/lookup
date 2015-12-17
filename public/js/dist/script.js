@@ -3,6 +3,39 @@ var app = angular.module('lookUp', ['ui.router']);
 app.config(function ($urlRouterProvider, $locationProvider) {	
 	$urlRouterProvider.otherwise('/');
 });
+app.filter('architectAndStyle', function () {
+    return function (items, filters) {
+        if (!items) return;
+        if (Object.keys(filters).length === 0) return items;
+
+        var filteredBuildings = [];
+
+        items.forEach(function (item) {
+            if (filters[item.architect._id] || filters[item.style._id]) {
+                filteredBuildings.push(item);
+            }
+        });
+
+        return filteredBuildings;
+    };
+});
+
+app.filter('unique', function () {
+
+    return function (items) {
+        var filteredItems = [];
+        var itemsSeen = {};
+
+        items.forEach(function (item) {
+            if (!itemsSeen[item._id]) {
+                itemsSeen[item._id] = true;
+                filteredItems.push(item);
+            }
+        });
+        return filteredItems;
+    };
+});
+
 app.directive('luMapBuildings', function (Maps, BuildingUtils, $stateParams) {
     return {
         restrict: 'E',
@@ -13,8 +46,8 @@ app.directive('luMapBuildings', function (Maps, BuildingUtils, $stateParams) {
         link: function (scope, element, attrs) {
 
         }
-    }
-})
+    };
+});
 
 app.controller('BuildingsCtrl', function ($scope, $stateParams, Maps, BuildingUtils) {
 	var mapDiv = document.getElementById('buildings-map');
@@ -42,13 +75,13 @@ app.controller('BuildingsCtrl', function ($scope, $stateParams, Maps, BuildingUt
 
 	$scope.activateFilter = function (option) {
 		$scope.activeFilters[option._id] = option.name;
-	}
+	};
 
 	$scope.deactivateFilter = function (name) {
 		Object.keys($scope.activeFilters).forEach(function (id) {
 			if ($scope.activeFilters[id] === name) delete $scope.activeFilters[id];
 		});
-	}
+	};
 });
 
 app.factory('Buildings', function (BuildingUtils) {
@@ -68,39 +101,6 @@ app.config(function ($stateProvider) {
 	});
 });
 
-app.filter('architectAndStyle', function () {
-    return function (items, filters) {
-        if (!items) return;
-        if (Object.keys(filters).length === 0) return items;
-
-        var filteredBuildings = [];
-
-        items.forEach(function (item) {
-            if (filters[item.architect._id] || filters[item.style._id]) {
-                filteredBuildings.push(item);
-            }
-        });
-
-        return filteredBuildings;
-    }
-})
-
-app.filter('unique', function () {
-
-    return function (items) {
-        var filteredItems = [];
-        var itemsSeen = {};
-
-        items.forEach(function (item) {
-            if (!itemsSeen[item._id]) {
-                itemsSeen[item._id] = true;
-                filteredItems.push(item);
-            }
-        });
-        return filteredItems;
-    }
-});
-
 app.controller('HomeCtrl', function () {
 	
 });
@@ -110,7 +110,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		templateUrl: '/home/home.template.html',
 		controller: 'HomeCtrl'
 	});
-})
+});
+
 app.controller('NewBuildingCtrl', function ($scope, Maps, BuildingUtils) {
 
 	var mapDiv = document.getElementById('new-building-map');
@@ -128,7 +129,7 @@ app.controller('NewBuildingCtrl', function ($scope, Maps, BuildingUtils) {
 				$scope.searchResults = {
 					name: res.name,
 					address: res.address
-				}
+				};
 				$scope.newBuilding.location = res.location;
 				$scope.newBuilding.address = res.address;
 
@@ -138,9 +139,9 @@ app.controller('NewBuildingCtrl', function ($scope, Maps, BuildingUtils) {
 			.then(null, function () {
 				$scope.searchResults = {
 					name: 'No building found'
-				}
-			})
-	}
+				};
+			});
+	};
 
 	$scope.addNewBuilding = BuildingUtils.addNewBuilding;
 
@@ -148,29 +149,30 @@ app.controller('NewBuildingCtrl', function ($scope, Maps, BuildingUtils) {
 
 
 app.config(function ($stateProvider, $urlRouterProvider) {
-	$urlRouterProvider.when('/new', '/new/search')
-	
+	$urlRouterProvider.when('/new', '/new/search');
+
 	$stateProvider.state('newBuilding', {
 		url: '/new',
 		templateUrl: '/new-building/new-building.html',
 		controller: 'NewBuildingCtrl'
 	});
-	
+
 	$stateProvider.state('newBuilding.search', {
 		url: '/search',
 		templateUrl: '/new-building/new-building-search.html'
 	});
-	
+
 	$stateProvider.state('newBuilding.verify', {
 		url: '/verify',
 		templateUrl: '/new-building/new-building-verify.html'
-	});	
-	
+	});
+
 	$stateProvider.state('newBuilding.info', {
 		url: '/info',
 		templateUrl: '/new-building/new-building-info.html'
 	});
 });
+
 app.directive('luMapSingle', function (Maps) {
     return {
         restrict: 'E',
@@ -201,7 +203,7 @@ app.directive('luMapSingle', function (Maps) {
             put the location search inside of initializeMap
             */
         }
-    }
+    };
 });
 
 app.controller('SingleBuildingCtrl', function ($scope, $stateParams, building) {
@@ -218,8 +220,8 @@ app.config(function ($stateProvider) {
                 return BuildingUtils.findById($stateParams.id);
             }
         }
-    })
-})
+    });
+});
 
 app.factory('BuildingUtils', function ($http, $state) {
 
@@ -229,8 +231,8 @@ app.factory('BuildingUtils', function ($http, $state) {
 
 				//TODO redirect to building detail page
 				$state.go('home');
-			})
-	}
+			});
+	};
 
 	var findByLocation = function (location) {
 		return $http({
@@ -242,7 +244,7 @@ app.factory('BuildingUtils', function ($http, $state) {
 			return res.data;
 		})
 		.then(null, console.error.bind(console));
-	}
+	};
 
 	var findById = function (id) {
 		return $http.get('/api/buildings/' + id)
@@ -250,14 +252,14 @@ app.factory('BuildingUtils', function ($http, $state) {
 				return res.data;
 			})
 			.then(null, console.error.bind(console));
-	}
+	};
 
 	return {
 		addNewBuilding: addNewBuilding,
 		findByLocation: findByLocation,
 		findById: findById
-	}
-})
+	};
+});
 
 app.factory('Maps', function ($q) {
 	var initalizeMap = function (mapDiv, center, zoom) {
@@ -301,7 +303,7 @@ app.factory('Maps', function ($q) {
         });
 
 		return marker;
-	}
+	};
 
 	var findNewBuilding = function (queryName, queryLocation, map) {
 
@@ -331,7 +333,7 @@ app.factory('Maps', function ($q) {
 				name: results[0].name,
 				address: results[0].formatted_address,
 				location: [results[0].geometry.location.lng(), results[0].geometry.location.lat()]
-			}
+			};
 
 			deffered.resolve(formattedResults);
 
@@ -339,7 +341,7 @@ app.factory('Maps', function ($q) {
 
 		//return promise
 		return deffered.promise;
-	}
+	};
 
 	var findLocation = function (query, map) {
 
@@ -365,7 +367,7 @@ app.factory('Maps', function ($q) {
 
 		//return promise
 		return deffered.promise;
-	}
+	};
 
 	return {
 		initializeMap: initalizeMap,
@@ -373,7 +375,7 @@ app.factory('Maps', function ($q) {
 		findNewBuilding: findNewBuilding,
 		findLocation: findLocation,
 		drawMarker: drawMarker
-	}
+	};
 });
 
 app.directive('luFilter', function ($timeout) {
@@ -399,11 +401,11 @@ app.directive('luFilter', function ($timeout) {
             $searchBar.on('blur', function () {
                 $timeout(function () {
                     $list.addClass('hidden');
-                }, 200)
+                }, 200);
             });
         }
-    }
-})
+    };
+});
 
 app.directive('buildingItem', function () {
     return {
@@ -413,5 +415,5 @@ app.directive('buildingItem', function () {
         scope: {
             building: '=',
         }
-    }
-})
+    };
+});

@@ -8,5 +8,5 @@ app.directive('luMapBuildings', function (Maps, BuildingUtils, $stateParams) {
         link: function (scope, element, attrs) {
 
         }
-    }
-})
+    };
+});

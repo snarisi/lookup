@@ -6,8 +6,8 @@ app.factory('BuildingUtils', function ($http, $state) {
 
 				//TODO redirect to building detail page
 				$state.go('home');
-			})
-	}
+			});
+	};
 
 	var findByLocation = function (location) {
 		return $http({
@@ -19,7 +19,7 @@ app.factory('BuildingUtils', function ($http, $state) {
 			return res.data;
 		})
 		.then(null, console.error.bind(console));
-	}
+	};
 
 	var findById = function (id) {
 		return $http.get('/api/buildings/' + id)
@@ -27,11 +27,11 @@ app.factory('BuildingUtils', function ($http, $state) {
 				return res.data;
 			})
 			.then(null, console.error.bind(console));
-	}
+	};
 
 	return {
 		addNewBuilding: addNewBuilding,
 		findByLocation: findByLocation,
 		findById: findById
-	}
-})
+	};
+});

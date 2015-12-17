@@ -28,5 +28,5 @@ app.directive('luMapSingle', function (Maps) {
             put the location search inside of initializeMap
             */
         }
-    }
+    };
 });

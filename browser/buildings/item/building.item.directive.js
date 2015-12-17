@@ -6,5 +6,5 @@ app.directive('buildingItem', function () {
         scope: {
             building: '=',
         }
-    }
-})
+    };
+});

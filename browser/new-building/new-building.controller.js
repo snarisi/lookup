@@ -15,7 +15,7 @@ app.controller('NewBuildingCtrl', function ($scope, Maps, BuildingUtils) {
 				$scope.searchResults = {
 					name: res.name,
 					address: res.address
-				}
+				};
 				$scope.newBuilding.location = res.location;
 				$scope.newBuilding.address = res.address;
 
@@ -25,9 +25,9 @@ app.controller('NewBuildingCtrl', function ($scope, Maps, BuildingUtils) {
 			.then(null, function () {
 				$scope.searchResults = {
 					name: 'No building found'
-				}
-			})
-	}
+				};
+			});
+	};
 
 	$scope.addNewBuilding = BuildingUtils.addNewBuilding;
 

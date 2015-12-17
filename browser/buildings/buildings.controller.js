@@ -24,11 +24,11 @@ app.controller('BuildingsCtrl', function ($scope, $stateParams, Maps, BuildingUt
 
 	$scope.activateFilter = function (option) {
 		$scope.activeFilters[option._id] = option.name;
-	}
+	};
 
 	$scope.deactivateFilter = function (name) {
 		Object.keys($scope.activeFilters).forEach(function (id) {
 			if ($scope.activeFilters[id] === name) delete $scope.activeFilters[id];
 		});
-	}
+	};
 });

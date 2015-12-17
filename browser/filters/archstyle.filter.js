@@ -12,5 +12,5 @@ app.filter('architectAndStyle', function () {
         });
 
         return filteredBuildings;
-    }
-})
+    };
+});

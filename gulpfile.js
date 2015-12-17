@@ -15,10 +15,10 @@ gulp.task('lint', function () {
 gulp.task('scripts', function () {
     return gulp.src('./browser/**/*.js')
         .pipe(concat('script.js'))
-        .pipe(gulp.dest('browser/js/dist'))
+        .pipe(gulp.dest('public/js/dist'))
         .pipe(rename('script.min.js'))
         .pipe(uglify().on('error', gulpUtil.log))
-        .pipe(gulp.dest('browser/js/dist'));
+        .pipe(gulp.dest('public/js/dist'));
 });
 
 gulp.task('scss', function () {
@@ -28,8 +28,8 @@ gulp.task('scss', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch('browser/**/*.js', ['lint, scripts']);
+    gulp.watch('browser/**/*.js', ['lint', 'scripts']);
     gulp.watch('assets/stylesheets/*.scss', ['scss']);
 })
 
-gulp.task('default', ['lint', 'scipts', 'scss', 'watch']);
+gulp.task('default', ['lint', 'scripts', 'scss', 'watch']);

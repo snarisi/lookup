@@ -21,8 +21,8 @@ app.directive('luFilter', function ($timeout) {
             $searchBar.on('blur', function () {
                 $timeout(function () {
                     $list.addClass('hidden');
-                }, 200)
+                }, 200);
             });
         }
-    }
-})
+    };
+});

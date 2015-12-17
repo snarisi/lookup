@@ -11,5 +11,5 @@ app.filter('unique', function () {
             }
         });
         return filteredItems;
-    }
+    };
 });

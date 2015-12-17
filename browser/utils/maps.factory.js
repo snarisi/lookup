@@ -40,7 +40,7 @@ app.factory('Maps', function ($q) {
         });
 
 		return marker;
-	}
+	};
 
 	var findNewBuilding = function (queryName, queryLocation, map) {
 
@@ -70,7 +70,7 @@ app.factory('Maps', function ($q) {
 				name: results[0].name,
 				address: results[0].formatted_address,
 				location: [results[0].geometry.location.lng(), results[0].geometry.location.lat()]
-			}
+			};
 
 			deffered.resolve(formattedResults);
 
@@ -78,7 +78,7 @@ app.factory('Maps', function ($q) {
 
 		//return promise
 		return deffered.promise;
-	}
+	};
 
 	var findLocation = function (query, map) {
 
@@ -104,7 +104,7 @@ app.factory('Maps', function ($q) {
 
 		//return promise
 		return deffered.promise;
-	}
+	};
 
 	return {
 		initializeMap: initalizeMap,
@@ -112,5 +112,5 @@ app.factory('Maps', function ($q) {
 		findNewBuilding: findNewBuilding,
 		findLocation: findLocation,
 		drawMarker: drawMarker
-	}
+	};
 });

@@ -4,4 +4,4 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		templateUrl: '/home/home.template.html',
 		controller: 'HomeCtrl'
 	});
-})
+});
