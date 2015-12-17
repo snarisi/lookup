@@ -1,4 +1,9 @@
 <input ng-model="query" type="text" class="form-control"></input>
 <ul>
-    <li ng-repeat="option in options | filter:query ">{{option.name}}</li>
+    <li
+        ng-repeat="option in options | unique | filter:query"
+        ng-click="activate(option)"
+        class="no-bullet">
+        {{option.name}}
+    </li>
 </ul>

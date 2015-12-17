@@ -51,7 +51,6 @@ app.factory('Maps', function ($q) {
 		var formattedResults;
 
 		//search for place via google
-		//TODO: query 'The Cooper Union' returns results but 'Cooper Union' does not
 		service.textSearch(query, function(results) {
 
 			if (!results.length) return deffered.reject(results);

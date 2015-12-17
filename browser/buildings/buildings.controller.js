@@ -5,6 +5,7 @@ app.controller('BuildingsCtrl', function ($scope, $stateParams, Maps, BuildingUt
 	$scope.searchLoc = $stateParams.loc;
 	$scope.styles = [];
 	$scope.architects = [];
+	$scope.activeFilters = {};
 
 	Maps.findLocation($stateParams.loc, $scope.map)
 		.then(locationArray => {
@@ -16,10 +17,18 @@ app.controller('BuildingsCtrl', function ($scope, $stateParams, Maps, BuildingUt
 			$scope.buildings = buildings;
 			buildings.forEach(function (building) {
 				Maps.drawMarker(building, $scope.map);
-
-				// TODO remove duplicates
 				$scope.styles.push(building.style);
 				$scope.architects.push(building.architect);
 			});
-		})
+		});
+
+	$scope.activateFilter = function (option) {
+		$scope.activeFilters[option._id] = option.name;
+	}
+
+	$scope.deactivateFilter = function (name) {
+		Object.keys($scope.activeFilters).forEach(function (id) {
+			if ($scope.activeFilters[id] === name) delete $scope.activeFilters[id];
+		});
+	}
 });

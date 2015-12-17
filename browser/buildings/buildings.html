@@ -2,12 +2,16 @@
 	<div class="row">
 		<!-- building list -->
 		<div class="col-xs-4 side-view">
-			Filter
 			<div>
-				<lu-filter options="architects"></lu-filter>
-				<lu-filter options="styles"></lu-filter>
+				<ul class="no-bullets">
+					<li ng-repeat="filter in activeFilters" ng-click="deactivateFilter(filter)">{{filter}}</li>
+				</ul>
+				Filter by architect:
+				<lu-filter options="architects" filters="activeFilters" activate="activateFilter"></lu-filter>
+				Filter by style:
+				<lu-filter options="styles" filters="activeFilters" activate="activateFilter"></lu-filter>
 			</div>
-			<div ng-repeat="building in buildings">
+			<div ng-repeat="building in buildings | architectAndStyle:activeFilters">
 				<building-item building="building"></building-item>
 				<a ui-sref="singleBuilding({ id: building._id })">More</a>
 				<a ui-sref="#">Edit</a>

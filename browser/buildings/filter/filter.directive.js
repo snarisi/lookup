@@ -1,14 +1,17 @@
-app.directive('luFilter', function () {
+app.directive('luFilter', function ($timeout) {
     return {
         restrict: 'E',
         templateUrl: '/buildings/filter/filter.html',
         scope: {
             options: '=',
+            filters: '=',
+            activate: '='
         },
         link: function (scope, element, attrs) {
             var $searchBar = element.find('input');
             var $list = element.find('ul');
-            console.log($list);
+            var $listItem = $list.find('li');
+
             $list.addClass('hidden');
 
             $searchBar.on('focus', function () {
@@ -16,7 +19,9 @@ app.directive('luFilter', function () {
             });
 
             $searchBar.on('blur', function () {
-                $list.addClass('hidden');
+                $timeout(function () {
+                    $list.addClass('hidden');
+                }, 200)
             });
         }
     }
